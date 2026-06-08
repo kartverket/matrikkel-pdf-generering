@@ -1,5 +1,5 @@
 [versions]
-kotlin = "2.3.21"
+kotlin = "2.4.0"
 logback = "1.5.34"
 prometheus = "1.16.5"
 hikariVersion = "7.0.2"
