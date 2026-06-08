@@ -1,0 +1,17 @@
+.gradle
+build/
+
+
+# IntelliJ / Android Studio
+.idea/
+
+### Kotlin ###
+.kotlin
+
+### VS Code ###
+.vscode/
+
+### Mac OS ###
+.DS_Store
+
+**/*.private.env

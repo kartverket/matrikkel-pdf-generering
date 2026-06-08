@@ -1,0 +1,20 @@
+[versions]
+kotlin = "2.3.21"
+logback = "1.5.34"
+prometheus = "1.16.5"
+hikariVersion = "7.0.2"
+flywayVersion = "12.8.1"
+
+
+[libraries]
+logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
+micrometer-registryPrometheus = { module = "io.micrometer:micrometer-registry-prometheus", version.ref = "prometheus" }
+hikari = { module = "com.zaxxer:HikariCP", version.ref = "hikariVersion" }
+flyway = { module = "org.flywaydb:flyway-core", version.ref = "flywayVersion" }
+flyway-postgresql = { module = "org.flywaydb:flyway-database-postgresql", version.ref = "flywayVersion" }
+
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
