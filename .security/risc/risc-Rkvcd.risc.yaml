@@ -1,0 +1,46 @@
+schemaVersion: ENC[AES256_GCM,data:/rEu,iv:Zmi6KEkJGVJzN3FLZ20jeGOEV6dCMvRIUCQQaDiXv08=,tag:BKHsvKJYrdgIYlm+A9EUxg==,type:str]
+title: ENC[AES256_GCM,data:vQGPwqjQLicf2m1S0d3Wwtnfa4+A4n4w1z7xVV0QrXPe8idn7zg4ziY=,iv:IsDe519lKj5WR8tWegrGsngmhecCj/9h1S/GKybhwvs=,tag:O35Qqt8ZvCduRhZ5cJ8K+w==,type:str]
+scope: ENC[AES256_GCM,data:pQr0f9/TC+d9508cPV6m2ziDGSIsFdqsxX5BfwJ4yaDj5Px1vYZ8mk0wKNU4eCwzXp78n2Yl3dwgZkZPWilKhKqk7y+me5XhcCNdEa6/8xGWTztGqRqsiooVnkd1/KB+xBSJo/9jswYwU9QEH2AWcZcdg8ovqU0dgoxxoWznv2dUfw3eq5Qgy7OfNLp5GZDFieM86+CndAqDNMcSdflnu+7MhWG43Waze0Z1eI305LDR9zR+7U9N1ILMg3L9gGkZJezSIdia1k5fE4R8JSsb9mZf9t9l8MFKyHU21MmNfnjgbpA=,iv:QDpDBV3BOvdaJzz13qln7o+3uMRK1SUEhlqHzz3VzsA=,tag:q6la1PE3m6KYvP7iCQUgJg==,type:str]
+scenarios: []
+sops:
+    shamir_threshold: 2
+    key_groups:
+        - gcp_kms:
+            - resource_id: projects/matrikkel-prod-91b2/locations/europe-north1/keyRings/matrikkel-risc-key-ring/cryptoKeys/matrikkel-risc-crypto-key
+              created_at: "2026-06-11T06:31:58Z"
+              enc: CiQAhABYXrCITruMnCbHrrZBzecIDa90Ds7igye5PXYicCaDjAUSSgAhTyuDo2CQjVl7poN+orNl7z1DdGyEQvqXpmjIyf86LaSMbpA6+bbSM+7jZ1ByRoavYU0Sm/4414ZPJ61+FTl8Qf4mG8EiFsML
+          hc_vault: []
+          age:
+            - recipient: age145s860ux96jvx6d7nwvzar588qjmgv5p47sp6nmmt2jnmhqh4scqcuk0mg
+              enc: |
+                -----BEGIN AGE ENCRYPTED FILE-----
+                YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBHRWVRUVV6UkhycGR6a082
+                dkxyQjB4VGJIUUVWNW8rMWwvQitxSDh3eFZnCnZoWm5aQ0daWDJ3OGJla044Rlo0
+                bTJ5MGNaN1p3SmlKYkhiZ2EwVTRSOFkKLS0tIE5Lam51NThzZWFMWTlNMFBqbEpx
+                aDc0ek1kTU0vQWo2SFlMWDNPbXRwa28Knc8g8tn0PpGZF0+S5hPc9bQ6a+blwZp1
+                x07cj60fyJW/KSoOMmwokTZcSJbNfHk8BpWAwDT4gSY8211v96UAf0w=
+                -----END AGE ENCRYPTED FILE-----
+        - hc_vault: []
+          age:
+            - recipient: age18e0t6ve0vdxqzzjt7rxf0r6vzc37fhs5cad2qz40r02c3spzgvvq8uxz23
+              enc: |
+                -----BEGIN AGE ENCRYPTED FILE-----
+                YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBkenJKL3FLblU4UjB2RW1o
+                UUlCRU1JUnQxeThkWEFndXFCeHROSUR6NUhVCjJ5VFVDUUsycFdvczFXRkJKVW5N
+                bWpQU1ovMDl0SnJqb1pBam9taW5EcmsKLS0tIC9lanJ6Ym4rVW1NU1RnWDQvL0Ju
+                NGRYRTlUUkd1V296d0J0MlE4NlBmMzgKCQfzvlhmTVRah5rKhffw0lb+ed2IoCu6
+                ZQLXQV0hRdRnIQ4YeEDZnL1769CMaPT1y9xDxPaQ03J2qjJ+R6Ow4SA=
+                -----END AGE ENCRYPTED FILE-----
+            - recipient: age1kjpgclkjev08aa8l2uy277gn0cngrkrkazt240405ezqywkm5axqt3d3tq
+              enc: |
+                -----BEGIN AGE ENCRYPTED FILE-----
+                YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBQQzhBTmp4cytzRmNuR1BT
+                WjdjRDZKVFc3QVI1RmxoTERaNzVxdGpEc1FnCkd1UGdMSDE5UjYzY29Ra2NES1ZM
+                Q0lGTzVMWjdMUUthRUJFQmZzbmhZWW8KLS0tIGRNbC9VRzJXQkhnYVJ3R3g0WDdX
+                QnVhalFnelA1ZERmSnVhTElnYUd1cWMK9u0j8dzMmUCvQeWnFIXcdCw59dknB6lQ
+                r5ZVmeV8pnQIyz4C5qcDItNxjVmreqzI0A3XCMsE7P4apoUHG86p4Gc=
+                -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-06-11T06:31:58Z"
+    mac: ENC[AES256_GCM,data:pXZ9lUmpCNcHnOF7XBQ0Go7On2hErchfETFhf0qKloMVmpetFWl31V25hINyXFrEpevha+e1xGqz8vScDUPjOu1yADREj6NKa3GX8H66KKf84SqKbtgM74RJsD6g6HaQqSSEeG+j4/n0WWCs+uu6VT1I8mQF8oYRAgxILAzWQZ0=,iv:o0cv77czHwmO3amR7aKPUi69wfwUisGmbFA2EDW76/8=,tag:31GP1ggNW6EFMzfLLxESBQ==,type:str]
+    unencrypted_regex: ^unencryptedMetadata$
+    version: 3.12.2
