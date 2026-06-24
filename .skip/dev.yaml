@@ -27,7 +27,3 @@ spec:
     path: /internal/isReady
     initialDelay: 10      # default: 0
     failureThreshold: 6   # default: 3
-  prometheus:
-    port: 8086
-    path: /internal/metrics
-    allowAllMetrics: true

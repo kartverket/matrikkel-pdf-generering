@@ -61,8 +61,6 @@ jobs:
       - name: Build app
         run: ./gradlew :installDist --no-daemon
 
-
-
       - name: Build Docker image
         uses: docker/build-push-action@v7
         env:
