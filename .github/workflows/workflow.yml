@@ -25,7 +25,7 @@ jobs:
         run: |
           version="$(date -u '+%Y.%m.%d-%H.%M')-$(echo "${GITHUB_SHA}" | cut -c1-7)"
           echo "version=${version}" >> "$GITHUB_OUTPUT"
-          echo "image=ghcr.io/kartverket/matrikkel-pdf-generering:§{version}" >> "$GITHUB_OUTPUT"
+          echo "image=ghcr.io/kartverket/matrikkel-pdf-generering:${version}" >> "$GITHUB_OUTPUT"
 
 
   package-image:
