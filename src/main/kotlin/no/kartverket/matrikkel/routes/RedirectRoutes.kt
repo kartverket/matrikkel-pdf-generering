@@ -6,7 +6,7 @@ import io.ktor.server.routing.post
 
 
 fun Route.redirectRoutes() {
-        post("/redirect") {
+        post("/create-document") {
             call.respondText("Sending data to Bun")
         }
     }

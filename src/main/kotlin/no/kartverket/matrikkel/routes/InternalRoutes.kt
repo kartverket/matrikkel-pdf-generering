@@ -15,8 +15,4 @@ fun Route.internalRoutes() {
         get("isReady") {
             call.respondText("Ready")
         }
-
-        get("selftest") {
-            call.respondText("Helloworld")
-        }
     }}

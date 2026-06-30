@@ -8,8 +8,12 @@ import io.ktor.server.routing.route
 
 fun Route.convertRoutes() {
     route("convert") {
-        post("pdf") {
-            call.respondText("PDF")
+        route("html") {
+            route("to"){
+                post("pdf") {
+                    call.respondText("PDF")
+                }
+            }
         }
     }
 }
