@@ -39,6 +39,11 @@ dependencies {
     implementation(ktorLibs.client.cio)
     implementation(ktorLibs.client.contentNegotiation)
 
+    // iText
+    implementation("com.itextpdf:kernel:7.2.5")
+    implementation("com.itextpdf:layout:7.2.5")
+    implementation("com.itextpdf:io:7.2.5")
+    implementation("com.itextpdf:html2pdf:4.0.5")
 
     testImplementation(kotlin("test"))
     testImplementation(ktorLibs.server.testHost)
