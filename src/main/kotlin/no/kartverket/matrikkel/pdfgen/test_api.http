@@ -1,0 +1,8 @@
+### Test PDF-generering via POST
+POST http://localhost:8086/api/generate-pdf
+Content-Type: application/json
+
+{
+  "html": "<html><body><h1>Test fra API</h1><p class='text-blue'>Dette er en test-HTML.</p></body></html>",
+  "css": ".text-blue { color: #1d4ed8; font-family: sans-serif; }"
+}

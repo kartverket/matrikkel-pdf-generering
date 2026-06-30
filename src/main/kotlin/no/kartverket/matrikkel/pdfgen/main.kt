@@ -6,35 +6,51 @@ import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import kotlinx.serialization.Serializable
 import java.io.File
+import io.ktor.serialization.kotlinx.json.*
+import io.ktor.server.plugins.contentnegotiation.*
+import io.ktor.server.request.receive
+
+
+@Serializable
+data class PdfRequest(
+    val html: String,
+    val css: String
+)
 
 fun main() {
-    embeddedServer(Netty, port = 8080) {
+    embeddedServer(Netty, port = 8086) {
+        // Aktiver JSON parsing
+        install(ContentNegotiation) {
+            json()
+        }
+
         routing {
 
-            get("/generate-pdf") {
+            post("/api/generate-pdf") {
                 val generator = PdfGenerator()
-                val distFolder = File("dist")
-                val htmlFile = File(distFolder,"index.html")
-
-                if (!htmlFile.exists()) {
-                    call.respond(HttpStatusCode.NotFound, "HTML file not found")
-                    return@get
-                }
 
                 try {
-                    val htmlContent = htmlFile.readText(Charsets.UTF_8)
-                    val pdfBytes = generator.convertHtmlToPdf(htmlContent, distFolder)
+                    val requestData = call.receive<PdfRequest>()
 
-                    // Send PDF tilbake til nettleseren
-                    call.response.header(
-                        HttpHeaders.ContentDisposition, ContentDisposition.Attachment.withParameter(
-                        ContentDisposition.Parameters.FileName, "react_rapport.pdf").toString()
+                    val pdfBytes = generator.convertDynamicHtmlAndCssToPdf(
+                        htmlContent = requestData.html,
+                        cssContent = requestData.css
                     )
-                    call.respondBytes(pdfBytes, ContentType.Application.Pdf, HttpStatusCode.OK)
+
+                    call.respondBytes(
+                        bytes = pdfBytes,
+                        contentType = ContentType.Application.Pdf,
+                        status = HttpStatusCode.OK
+                    )
 
                 } catch (e: Exception) {
-                    call.respond(HttpStatusCode.InternalServerError, "Error generating PDF: ${e.message}")
+                    call.respondText(
+                        "Kunne ikke prosessere PDF: ${e.message}",
+                        status = HttpStatusCode.InternalServerError
+                    )
+                    e.printStackTrace()
                 }
             }
         }
