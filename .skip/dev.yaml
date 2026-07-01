@@ -1,5 +1,6 @@
 apiVersion: skiperator.kartverket.no/v1alpha1
 kind: Application
+
 metadata:
   name: matrikkel-pdf-generering
   namespace: matrikkel-main
@@ -9,6 +10,10 @@ spec:
   ingresses:
     - matrikkel-pdf-generering.atkv3-dev.kartverket-intern.cloud
   replicas: 1
+
+  env:
+    - name: FRONTEND_URL
+      value: "http://matrikkel-m22.atkv3-dev.kartverket-intern.cloud"
 
   resources:
     requests:
