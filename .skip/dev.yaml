@@ -1,5 +1,10 @@
 apiVersion: skiperator.kartverket.no/v1alpha1
 kind: Application
+env:
+  - name: M22_URL
+    value: "TODO"
+  - name: FRONTEND_URL
+    value: "http://matrikkel-m22.atkv3-dev.kartverket-intern.cloud"
 metadata:
   name: matrikkel-pdf-generering
   namespace: matrikkel-main
