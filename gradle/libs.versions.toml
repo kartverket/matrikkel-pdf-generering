@@ -3,7 +3,7 @@ kotlin = "2.4.0"
 logback = "1.5.37"
 prometheus = "1.17.0"
 hikariVersion = "7.1.0"
-flywayVersion = "12.9.0"
+flywayVersion = "12.10.0"
 
 
 [libraries]
