@@ -12,7 +12,6 @@ import io.ktor.server.plugins.callid.*
 import io.ktor.server.plugins.calllogging.*
 import io.ktor.server.plugins.statuspages.*
 import io.ktor.server.request.*
-import no.kartverket.matrikkel.api.HttpFrontendClient
 import no.kartverket.matrikkel.config.Configuration
 import org.slf4j.LoggerFactory
 import java.util.*
@@ -29,11 +28,9 @@ fun runApplication() {
         }
     }
 
-    val frontendClient = HttpFrontendClient(client, config.frontendUrl)
-
     KtorServer.create(factory = Netty, port = 8086) {
         standardPlugins()
-        configureRouting(frontendClient)
+        configureRouting(config, client)
 
     }.start(wait = true)
 }
