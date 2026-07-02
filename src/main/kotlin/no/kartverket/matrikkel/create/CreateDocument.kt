@@ -11,7 +11,7 @@ suspend fun createDocument(frontendUrl: String, client: HttpClient, call: io.kto
     val m22Payload = call.receiveText()
 
 
-    val response: HttpResponse = client.post("$frontendUrl/create-document") {
+    val response: HttpResponse = client.post("$frontendUrl/render") {
         contentType(ContentType.Application.Json)
         setBody(m22Payload)
     }
