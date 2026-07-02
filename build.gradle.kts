@@ -35,6 +35,8 @@ dependencies {
     implementation(libs.micrometer.registryPrometheus)
     implementation(libs.flyway)
     implementation(libs.hikari)
+    implementation(ktorLibs.client.core)
+    implementation(ktorLibs.client.cio)
 
 
     testImplementation(kotlin("test"))

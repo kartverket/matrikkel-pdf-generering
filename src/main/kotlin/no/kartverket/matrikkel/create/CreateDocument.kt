@@ -1,8 +1,25 @@
 package no.kartverket.matrikkel.create
 
+import io.ktor.client.*
+import io.ktor.client.request.*
+import io.ktor.client.statement.*
+import io.ktor.http.*
+import io.ktor.server.application.*
+import io.ktor.server.request.*
 
-suspend fun createDocument(frontendUrl: String) {
+
+suspend fun createDocument(frontendUrl: String, client: HttpClient, call: ApplicationCall) {
+    val m22Payload = call.receiveText()
+
+    val response: HttpResponse = client.post("$frontendUrl/render") {
+        contentType(ContentType.Application.Json)
+        setBody(m22Payload)
+    }
 
 
-    // Videresende m22 payload til frontend her og få html + css tilbake
+    val frontendData = response.bodyAsText()
+
+    // Starte generering av pdf her
+    println(frontendData)
+
 }
