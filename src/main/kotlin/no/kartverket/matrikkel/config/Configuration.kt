@@ -2,7 +2,6 @@ package no.kartverket.matrikkel.config
 
 class Configuration(
     val frontendUrl: String = getRequiredConfig("FRONTEND_URL"),
-    val m22Url: String = getRequiredConfig("M22_URL"),
 )
 
 
