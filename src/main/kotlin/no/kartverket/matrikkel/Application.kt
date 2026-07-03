@@ -5,8 +5,6 @@ import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.*
 import io.ktor.http.*
 import io.ktor.server.application.*
-import io.ktor.server.auth.*
-import io.ktor.server.auth.jwt.*
 import io.ktor.server.netty.*
 import io.ktor.server.plugins.callid.*
 import io.ktor.server.plugins.calllogging.*
@@ -46,12 +44,6 @@ fun Application.standardPlugins() {
         disableDefaultColors()
         filter { call -> call.request.path().contains("/internal/").not() }
         mdc("RequestId") { it.callId }
-        mdc("CorrelationId") {
-            it.request.header(HttpHeaders.XCorrelationId)
-        }
-        mdc("UserId") {
-            it.principal<JWTPrincipal>()?.subject ?: "Anonymous"
-        }
     }
     install(StatusPages) {
         configureExceptionHandling()
