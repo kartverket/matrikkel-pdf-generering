@@ -1,12 +1,13 @@
 package no.kartverket.matrikkel.routes
 
+import io.ktor.client.*
 import io.ktor.server.routing.*
-import no.kartverket.matrikkel.api.FrontendClient
+import no.kartverket.matrikkel.config.Configuration
 import no.kartverket.matrikkel.create.createDocument
 
 
-fun Route.createRoutes(frontendClient: FrontendClient) {
+fun Route.createRoutes(config: Configuration, client: HttpClient) {
     post("/create-document") {
-        createDocument(frontendClient, call)
+        createDocument(config.frontendUrl, client, call)
     }
 }
