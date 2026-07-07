@@ -5,13 +5,14 @@ import io.ktor.client.plugins.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
+import kotlinx.serialization.json.JsonElement
 import no.kartverket.matrikkel.ServiceException
 import no.kartverket.matrikkel.UpstreamException
 import java.io.IOException
 
 
 interface FrontendClient {
-    suspend fun render(m22Payload: String): String
+    suspend fun render(m22Payload: JsonElement): String
 }
 
 class HttpFrontendClient(
@@ -19,7 +20,7 @@ class HttpFrontendClient(
     private val baseUrl: String,
 ) : FrontendClient {
 
-    override suspend fun render(m22Payload: String): String {
+    override suspend fun render(m22Payload: JsonElement): String {
         val response: HttpResponse = try {
             client.post("$baseUrl/render") {
                 contentType(ContentType.Application.Json)

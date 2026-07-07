@@ -4,13 +4,15 @@ import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.*
 import io.ktor.http.*
+import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
 import io.ktor.server.netty.*
-import no.kartverket.matrikkel.api.HttpFrontendClient
 import io.ktor.server.plugins.callid.*
 import io.ktor.server.plugins.calllogging.*
+import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.plugins.statuspages.*
 import io.ktor.server.request.*
+import no.kartverket.matrikkel.api.HttpFrontendClient
 import no.kartverket.matrikkel.config.Configuration
 import org.slf4j.LoggerFactory
 import java.util.*
@@ -24,6 +26,9 @@ fun runApplication() {
 
         install(HttpTimeout) {
             requestTimeoutMillis = 10000 // 10 sekunder
+        }
+        install(io.ktor.client.plugins.contentnegotiation.ContentNegotiation) {
+            json()
         }
     }
 
