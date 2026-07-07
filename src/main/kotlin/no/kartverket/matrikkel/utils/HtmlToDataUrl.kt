@@ -1,10 +1,10 @@
 package no.kartverket.matrikkel.utils
 
-import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
+import java.util.Base64
 
 fun htmlToDataUrl(html: String): String {
-    val encoded = URLEncoder.encode(html, StandardCharsets.UTF_8).replace("+", "%20")
-    return "data:text/html;charset=utf-8,$encoded"
+    val encoded = Base64.getEncoder().encodeToString(html.toByteArray(StandardCharsets.UTF_8))
+    return "data:text/html;charset=utf-8;base64,$encoded"
 }
 

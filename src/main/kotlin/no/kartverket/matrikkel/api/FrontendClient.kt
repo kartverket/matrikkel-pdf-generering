@@ -1,10 +1,13 @@
 package no.kartverket.matrikkel.api
 
 import io.ktor.client.*
+import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.*
+import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
+import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.JsonElement
 import no.kartverket.matrikkel.ServiceException
 import no.kartverket.matrikkel.UpstreamException
@@ -20,6 +23,8 @@ class HttpFrontendClient(
     private val baseUrl: String,
 ) : FrontendClient {
 
+    constructor(baseUrl: String) : this(defaultHttpClient(), baseUrl)
+
     override suspend fun render(m22Payload: JsonElement): String {
         val response: HttpResponse = try {
             client.post("$baseUrl/render") {
@@ -32,14 +37,27 @@ class HttpFrontendClient(
             throw ServiceException.badGateway(message = "Failed to contact frontend", cause = e)
         }
 
-        val body = response.bodyAsText()
         if (!response.status.isSuccess()) {
             throw UpstreamException(
                 status = response.status,
-                body = body,
+                body = response.bodyAsText(),
                 contentType = response.contentType(),
             )
         }
+
+        val body = response.bodyAsText()
+
         return body
+    }
+
+    companion object {
+        private fun defaultHttpClient(): HttpClient = HttpClient(CIO) {
+            install(HttpTimeout) {
+                requestTimeoutMillis = 10_000 // 10 sekunder
+            }
+            install(ContentNegotiation) {
+                json()
+            }
+        }
     }
 }
