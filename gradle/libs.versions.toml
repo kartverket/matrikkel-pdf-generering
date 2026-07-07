@@ -4,7 +4,7 @@ logback = "1.5.37"
 prometheus = "1.17.0"
 hikariVersion = "7.1.0"
 flywayVersion = "12.9.0"
-
+logstashLogbackEncoder = "8.0"
 
 [libraries]
 logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
@@ -12,7 +12,7 @@ micrometer-registryPrometheus = { module = "io.micrometer:micrometer-registry-pr
 hikari = { module = "com.zaxxer:HikariCP", version.ref = "hikariVersion" }
 flyway = { module = "org.flywaydb:flyway-core", version.ref = "flywayVersion" }
 flyway-postgresql = { module = "org.flywaydb:flyway-database-postgresql", version.ref = "flywayVersion" }
-
+logstash-logback-encoder = { module = "net.logstash.logback:logstash-logback-encoder", version.ref = "logstashLogbackEncoder" }
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

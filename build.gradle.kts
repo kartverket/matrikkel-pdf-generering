@@ -38,13 +38,10 @@ dependencies {
     implementation(libs.hikari)
     implementation(ktorLibs.client.core)
     implementation(ktorLibs.client.cio)
-    implementation(ktorLibs.client.contentNegotiation)
+    implementation(libs.logstash.logback.encoder)
 
     // iText
-    implementation("com.itextpdf:kernel:7.2.5")
-    implementation("com.itextpdf:layout:7.2.5")
-    implementation("com.itextpdf:io:7.2.5")
-    implementation("com.itextpdf:html2pdf:4.0.5")
+    implementation("com.itextpdf:html2pdf:6.3.2")
 
     testImplementation(kotlin("test"))
     testImplementation(ktorLibs.server.testHost)

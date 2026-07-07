@@ -6,13 +6,11 @@ import io.ktor.server.application.*
 import io.ktor.server.netty.*
 import io.ktor.server.plugins.callid.*
 import io.ktor.server.plugins.calllogging.*
-import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.plugins.statuspages.*
 import io.ktor.server.request.*
 import no.kartverket.matrikkel.api.HttpFrontendClient
 import no.kartverket.matrikkel.config.Configuration
 import no.kartverket.matrikkel.pdfgen.PdfService
-import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
 import org.slf4j.LoggerFactory
 import java.util.*
@@ -32,9 +30,6 @@ fun runApplication() {
 }
 
 fun Application.standardPlugins() {
-    install(ContentNegotiation) {
-        json()
-    }
     install(CallId) {
         header(HttpHeaders.XRequestId)
         generate { UUID.randomUUID().toString() }
