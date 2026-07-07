@@ -26,15 +26,11 @@ class HttpFrontendClient(
     constructor(baseUrl: String) : this(defaultHttpClient(), baseUrl)
 
     override suspend fun render(m22Payload: JsonElement): String {
-        val response: HttpResponse = try {
+        val response = executeRequest {
             client.post("$baseUrl/render") {
                 contentType(ContentType.Application.Json)
                 setBody(m22Payload)
             }
-        } catch (e: HttpRequestTimeoutException) {
-            throw ServiceException.gatewayTimeout(message = "Timeout while contacting frontend", cause = e)
-        } catch (e: IOException) {
-            throw ServiceException.badGateway(message = "Failed to contact frontend", cause = e)
         }
 
         if (!response.status.isSuccess()) {
@@ -46,6 +42,14 @@ class HttpFrontendClient(
         }
 
         return response.bodyAsText()
+    }
+
+    private suspend fun executeRequest(request: suspend () -> HttpResponse): HttpResponse = try {
+        request()
+    } catch (e: HttpRequestTimeoutException) {
+        throw ServiceException.gatewayTimeout(message = "Timeout while contacting frontend", cause = e)
+    } catch (e: IOException) {
+        throw ServiceException.badGateway(message = "Failed to contact frontend", cause = e)
     }
 
     companion object {
