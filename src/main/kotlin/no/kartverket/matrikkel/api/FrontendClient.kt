@@ -37,15 +37,16 @@ class HttpFrontendClient(
             throw ServiceException.badGateway(message = "Failed to contact frontend", cause = e)
         }
 
+        val body = response.bodyAsText()
+
         if (!response.status.isSuccess()) {
             throw UpstreamException(
                 status = response.status,
-                body = response.bodyAsText(),
+                body = body,
                 contentType = response.contentType(),
             )
         }
 
-        val body = response.bodyAsText()
 
         return body
     }
