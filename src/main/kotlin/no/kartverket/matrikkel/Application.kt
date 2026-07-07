@@ -1,8 +1,5 @@
 package no.kartverket.matrikkel
 
-import io.ktor.client.*
-import io.ktor.client.engine.cio.*
-import io.ktor.client.plugins.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
@@ -12,7 +9,11 @@ import io.ktor.server.plugins.calllogging.*
 import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.plugins.statuspages.*
 import io.ktor.server.request.*
+import no.kartverket.matrikkel.api.HttpFrontendClient
 import no.kartverket.matrikkel.config.Configuration
+import no.kartverket.matrikkel.pdfgen.PdfService
+import io.ktor.serialization.kotlinx.json.*
+import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
 import org.slf4j.LoggerFactory
 import java.util.*
 
@@ -21,21 +22,19 @@ val log = LoggerFactory.getLogger("matrikkel-pdf-generering")
 
 fun runApplication() {
     val config = Configuration()
-    val client = HttpClient(CIO) {
-
-        install(HttpTimeout) {
-            requestTimeoutMillis = 10000 // 10 sekunder
-        }
-    }
+    val frontendClient = HttpFrontendClient(config.frontendUrl)
+    val pdfService = PdfService()
 
     KtorServer.create(factory = Netty, port = 8086) {
+        configureRouting(frontendClient, pdfService)
         standardPlugins()
-        configureRouting(config, client)
-
     }.start(wait = true)
 }
 
 fun Application.standardPlugins() {
+    install(ContentNegotiation) {
+        json()
+    }
     install(CallId) {
         header(HttpHeaders.XRequestId)
         generate { UUID.randomUUID().toString() }
