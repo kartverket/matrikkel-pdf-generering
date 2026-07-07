@@ -1,7 +1,7 @@
 package no.kartverket.matrikkel.config
 
 class Configuration(
-    val frontendUrl: String = getRequiredConfig("FRONTEND_URL"),
+    val frontendUrl: String = getConfig("FRONTEND_URL") ?: "http://localhost:3000",
 )
 
 
