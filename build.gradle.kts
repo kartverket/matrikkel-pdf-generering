@@ -37,6 +37,7 @@ dependencies {
     implementation(libs.hikari)
     implementation(ktorLibs.client.core)
     implementation(ktorLibs.client.cio)
+    implementation(ktorLibs.client.contentNegotiation)
 
 
     testImplementation(kotlin("test"))
