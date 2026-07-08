@@ -6,22 +6,25 @@ import io.ktor.server.application.*
 import io.ktor.server.netty.*
 import io.ktor.server.plugins.callid.*
 import io.ktor.server.plugins.calllogging.*
-import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.plugins.statuspages.*
 import io.ktor.server.request.*
 import no.kartverket.matrikkel.api.HttpFrontendClient
 import no.kartverket.matrikkel.config.Configuration
+import no.kartverket.matrikkel.pdfgen.PdfService
+import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
 import org.slf4j.LoggerFactory
 import java.util.*
+
 
 val log = LoggerFactory.getLogger("matrikkel-pdf-generering")
 
 fun runApplication() {
     val config = Configuration()
     val frontendClient = HttpFrontendClient(config.frontendUrl)
+    val pdfService = PdfService()
 
     KtorServer.create(factory = Netty, port = 8086) {
-        configureRouting(frontendClient)
+        configureRouting(frontendClient, pdfService)
         standardPlugins()
     }.start(wait = true)
 }
