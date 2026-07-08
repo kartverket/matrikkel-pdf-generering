@@ -8,7 +8,7 @@ import no.kartverket.matrikkel.create.createDocument
 import no.kartverket.matrikkel.pdfgen.PdfService
 
 
-fun Route.createRoutes( client: FrontendClient, pdfService: PdfService) {
+fun Route.createRoutes( frontendClient: FrontendClient, pdfService: PdfService) {
     post("/create-document") {
         createDocument(client, pdfService, call)
     }
