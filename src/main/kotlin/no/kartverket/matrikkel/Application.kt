@@ -10,7 +10,7 @@ import io.ktor.server.plugins.statuspages.*
 import io.ktor.server.request.*
 import no.kartverket.matrikkel.api.HttpFrontendClient
 import no.kartverket.matrikkel.config.Configuration
-import no.kartverket.matrikkel.pdfgen.PdfService
+import no.kartverket.matrikkel.pdfgen.GotenbergPdfService
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
 import org.slf4j.LoggerFactory
 import java.util.*
@@ -21,7 +21,7 @@ val log = LoggerFactory.getLogger("matrikkel-pdf-generering")
 fun runApplication() {
     val config = Configuration()
     val frontendClient = HttpFrontendClient(config.frontendUrl)
-    val pdfService = PdfService()
+    val pdfService = GotenbergPdfService(config.gotenbergUrl)
 
     KtorServer.create(factory = Netty, port = 8086) {
         configureRouting(frontendClient, pdfService)

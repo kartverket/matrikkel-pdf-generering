@@ -40,9 +40,6 @@ dependencies {
     implementation(ktorLibs.client.cio)
     implementation(libs.logstash.logback.encoder)
 
-    // iText
-    implementation("com.itextpdf:html2pdf:6.3.2")
-
     testImplementation(kotlin("test"))
     testImplementation(ktorLibs.server.testHost)
 }
